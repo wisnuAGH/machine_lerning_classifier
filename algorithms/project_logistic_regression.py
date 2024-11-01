@@ -16,7 +16,7 @@ class LogisticRegressionModel:
 
         for _ in tqdm(range(self.n_iters), desc="Training logistic regression model"):
             linear_model = np.dot(X, self.weights) + self.bias
-            y_predicted = self._sigmoid(linear_model)
+            y_predicted = self._sigmoid(self, linear_model)
 
             # Gradient descent
             dw = (1 / n_samples) * np.dot(X.T, (y_predicted - y))
@@ -27,9 +27,10 @@ class LogisticRegressionModel:
 
     def predict(self, X):
         linear_model = np.dot(X, self.weights) + self.bias
-        y_predicted = self._sigmoid(linear_model)
+        y_predicted = self._sigmoid(self, linear_model)
         y_predicted_cls = [1 if i > 0.5 else 0 for i in y_predicted]
         return np.array(y_predicted_cls)
 
+    @staticmethod
     def _sigmoid(self, x):
         return 1 / (1 + np.exp(-x))

@@ -14,9 +14,6 @@ class Perceptron:
         self.weights = None
         self.bias = None
 
-    def _unit_step_function(self, x):
-        return np.where(x >= 0, 1, 0)
-
     def fit(self, X, y):
         n_samples, n_features = X.shape
         self.weights = np.zeros(n_features)
@@ -26,14 +23,18 @@ class Perceptron:
         for _ in tqdm(range(self.n_iters), desc="Training Perceptron"):
             for idx, x_i in enumerate(X):
                 linear_output = np.dot(x_i, self.weights) + self.bias
-                y_pred = self.activation_func(linear_output)
+                y_predict = self.activation_func(self, linear_output)
 
                 # Aktualizuj wagi
-                update = self.lr * (y[idx] - y_pred)
+                update = self.lr * (y[idx] - y_predict)
                 self.weights += update * x_i
                 self.bias += update
 
     def predict(self, X):
         linear_output = np.dot(X, self.weights) + self.bias
-        y_pred = self.activation_func(linear_output)
-        return y_pred
+        y_predict = self.activation_func(self, linear_output)
+        return y_predict
+
+    @staticmethod
+    def _unit_step_function(self, x):
+        return np.where(x >= 0, 1, 0)
