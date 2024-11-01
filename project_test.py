@@ -1,38 +1,11 @@
-import numpy as np
-import matplotlib.pyplot as plt
-
-from matplotlib.colors import ListedColormap
 from sklearn.datasets import make_blobs
 from sklearn.model_selection import train_test_split
 
-from project_perceptron import Perceptron
-from project_logistic_regression import LogisticRegressionModel
-from project_knn import KNNClassifier
-from project_svm import SVMClassifier
-
-
-def plot_decision_boundaries(X, y, models, model_names, title):
-    """Function provide plotting decision boundaries"""
-    x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
-    y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
-    xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.1), np.arange(y_min, y_max, 0.1))
-
-    fig, ax = plt.subplots(figsize=(8, 6))
-
-    cmap_points = ListedColormap(['#000000', '#FFFFFF'])
-
-    colors = ['r', 'g', 'b', 'y']  # Add more colors if needed
-
-    for i, (model, name, color) in enumerate(zip(models, model_names, colors)):
-        Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
-        Z = Z.reshape(xx.shape)
-
-        ax.contour(xx, yy, Z, colors=color, levels=[-1, 0, 1], alpha=1)
-        ax.scatter(X[:, 0], X[:, 1], c=y, cmap=cmap_points, edgecolor='k', marker='o')
-
-    ax.set_title(title)
-    ax.legend(handles=[plt.Line2D([], [], color=color, label=name) for color, name in zip(colors, model_names)])
-    plt.show()
+from algorithms.project_perceptron import Perceptron
+from algorithms.project_logistic_regression import LogisticRegressionModel
+from algorithms.project_knn import KNNClassifier
+from algorithms.project_svm import SVMClassifier
+from utils.plot_2d import plot_decision_boundaries
 
 
 # Przygotowanie danych (X i y to dane, które wcześniej zostały wygenerowane np. za pomocą make_blobs)
