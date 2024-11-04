@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 
 
-def plot_decision_boundaries(X, y, models, model_names, title):
+def plotDecisionBoundaries(X, y, models, model_names, title):
     """
     Function provide plotting decision boundaries
     Parameters:

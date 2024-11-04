@@ -23,7 +23,7 @@ class TestModels(unittest.TestCase):
                                                                             test_size=0.2,
                                                                             random_state=42)
 
-    def test_perceptron(self):
+    def testPerceptron(self):
         perceptron = Perceptron(learning_rate=0.01, n_iters=1000)
         perceptron.fit(self.X_train, self.y_train)
         predictions = perceptron.predict(self.X_test)
@@ -36,7 +36,7 @@ class TestModels(unittest.TestCase):
         self.assertEqual(predictions.tolist(), sk_predictions.tolist(),
                          "Perceptron predictions differ from scikit-learn")
 
-    def test_logistic_regression(self):
+    def testLogisticRegression(self):
         logistic = LogisticRegressionModel(learning_rate=0.01, n_iters=1000)
         logistic.fit(self.X_train, self.y_train)
         predictions = logistic.predict(self.X_test)
@@ -49,29 +49,29 @@ class TestModels(unittest.TestCase):
         self.assertEqual(predictions.tolist(), sk_predictions.tolist(),
                          "Logistic Regression predictions differ from scikit-learn")
 
-    def test_knn(self):
+    def testKnn(self):
         knn = KNNClassifier(k=3)
         knn.fit(self.X_train, self.y_train)
         predictions = knn.predict(self.X_test)
 
         # scikit-learn k-NN
-        sk_knn = KNNReference(n_neighbors=3)
-        sk_knn.fit(self.X_train, self.y_train)
-        sk_predictions = sk_knn.predict(self.X_test)
+        skKnn = KNNReference(n_neighbors=3)
+        skKnn.fit(self.X_train, self.y_train)
+        skPredictions = skKnn.predict(self.X_test)
 
-        self.assertEqual(predictions.tolist(), sk_predictions.tolist(), "k-NN predictions differ from scikit-learn")
+        self.assertEqual(predictions.tolist(), skPredictions.tolist(), "k-NN predictions differ from scikit-learn")
 
-    def test_svm(self):
+    def testSvm(self):
         svm = SVMClassifier(learning_rate=0.001, n_iters=1000)
         svm.fit(self.X_train, self.y_train)
         predictions = svm.predict(self.X_test)
 
         # scikit-learn SVM
-        sk_svm = SVMReference(kernel='linear', C=1.0)
-        sk_svm.fit(self.X_train, self.y_train)
-        sk_predictions = sk_svm.predict(self.X_test)
+        skSvm = SVMReference(kernel='linear', C=1.0)
+        skSvm.fit(self.X_train, self.y_train)
+        skPredictions = skSvm.predict(self.X_test)
 
-        self.assertEqual(predictions.tolist(), sk_predictions.tolist(), "SVM predictions differ from scikit-learn")
+        self.assertEqual(predictions.tolist(), skPredictions.tolist(), "SVM predictions differ from scikit-learn")
 
 
 if __name__ == "__main__":
