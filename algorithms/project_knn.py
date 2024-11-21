@@ -15,7 +15,7 @@ class KNNClassifier:
 
     def predict(self, X):
         y_predict = [self._predict(x) for x in X]
-        tqdm(range(1), desc="Training k-NN classifier")
+        # tqdm(range(1), desc="Training k-NN classifier")
         return np.array(y_predict)
 
     def _predict(self, x):
