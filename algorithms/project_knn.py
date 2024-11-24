@@ -14,8 +14,9 @@ class KNNClassifier:
         self.y_train = y
 
     def predict(self, X):
-        y_predict = [self._predict(x) for x in X]
-        # tqdm(range(1), desc="Training k-NN classifier")
+        y_predict = []
+        for x in tqdm(X, desc="Predicting k-NN classifier"):
+            y_predict.append(self._predict(x))
         return np.array(y_predict)
 
     def _predict(self, x):
