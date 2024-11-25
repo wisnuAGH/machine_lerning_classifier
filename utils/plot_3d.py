@@ -1,5 +1,5 @@
 from mpl_toolkits.mplot3d import Axes3D
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt  # try cborn dictionary
 import numpy as np
 from matplotlib.colors import ListedColormap
 
@@ -44,7 +44,7 @@ def plotDecisionBoundaries3d(X, y, models, model_names, title):
         ax.plot_surface(xx, yy, zz, color=color, alpha=0.3)
 
     ax.set_title(title)
-    ax.set_xlabel("Feature 1")
-    ax.set_ylabel("Feature 2")
-    ax.set_zlabel("Feature 3")
+    ax.set_xlabel("OX axis")
+    ax.set_ylabel("OY axis")
+    ax.set_zlabel("OZ axis")
     plt.show()
